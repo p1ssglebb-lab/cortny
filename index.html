@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+# Create the improved HTML content
+html_content = """<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -7,35 +8,34 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;900&display=swap');
         
-        :root { --accent: #00ffcc; --bg: #030303; }
+        :root { --accent: #00ffcc; --bg: #030303; --error: #ff3355; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-        /* Фоновая сетка */
         body::before { content: ""; position: fixed; top:0; left:0; width:100%; height:100%; background-image: radial-gradient(#00ffcc0a 1px, transparent 1px); background-size: 40px 40px; z-index: -1; }
 
-        /* Навигация */
         .navbar { padding: 40px 10%; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Space Mono', monospace; font-size: 24px; font-weight: 700; color: var(--accent); letter-spacing: 5px; }
+        .logo { font-family: 'Space Mono', monospace; font-size: 24px; font-weight: 700; color: var(--accent); letter-spacing: 5px; cursor: pointer; }
         
-        /* Главный экран */
         .hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; }
         h1 { font-size: 80px; text-transform: uppercase; line-height: 0.9; margin-bottom: 30px; }
         .btn { padding: 20px 40px; background: transparent; border: 1px solid var(--accent); color: var(--accent); cursor: pointer; font-family: 'Space Mono'; transition: 0.4s; }
         .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 30px var(--accent); }
 
-        /* Терминал */
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000e; display: none; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px); }
         .modal.active { display: flex; }
         .box { background: #0a0a0a; border: 1px solid var(--accent); width: 400px; padding: 40px; position: relative; }
+        .close-btn { position: absolute; top: 10px; right: 15px; color: var(--accent); cursor: pointer; font-size: 20px; }
         .input { width: 100%; background: #000; border: 1px solid #333; padding: 15px; color: var(--accent); margin-bottom: 10px; font-family: 'Space Mono'; }
-        #adminPanel { display: none; }
+        #adminPanel, #registerPanel { display: none; }
+        .toggle-link { color: #888; font-size: 12px; cursor: pointer; margin-top: 10px; display: block; text-align: center; }
+        .toggle-link:hover { color: #fff; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">VERTEX</div>
+        <div class="logo" onclick="location.reload()">VERTEX</div>
         <button class="btn" onclick="openModal()">TERMINAL_ACCESS</button>
     </nav>
 
@@ -47,31 +47,68 @@
     </main>
 
     <div class="modal" id="modal">
-        <div class="box" id="loginBox">
-            <div style="font-size: 10px; color: var(--accent); margin-bottom: 20px;">// SYSTEM_AUTH_REQUIRED</div>
-            <input type="text" class="input" id="u" placeholder="OPERATOR_ID">
-            <input type="password" class="input" id="p" placeholder="QUANTUM_KEY">
-            <button class="btn" style="width: 100%" onclick="check()">LOGIN</button>
-            <div id="log" style="color: #ff3355; font-size: 11px; margin-top: 10px;"></div>
-        </div>
-        <div class="box" id="adminPanel">
-            <h2 style="font-family: 'Space Mono'; margin-bottom: 20px;">ACCESS GRANTED</h2>
-            <button class="btn" style="width: 100%; margin-bottom: 10px;" onclick="alert('DATA_STREAM: ACTIVE')">LOAD_NEURAL_DATA</button>
-            <button class="btn" style="width: 100%; border-color: #ff3355; color: #ff3355;" onclick="location.reload()">DISCONNECT</button>
+        <div class="box">
+            <span class="close-btn" onclick="closeModal()">✕</span>
+            
+            <!-- Login Panel -->
+            <div id="loginBox">
+                <div style="font-size: 10px; color: var(--accent); margin-bottom: 20px;">// SYSTEM_AUTH_REQUIRED</div>
+                <input type="text" class="input" id="u" placeholder="OPERATOR_ID">
+                <input type="password" class="input" id="p" placeholder="QUANTUM_KEY">
+                <button class="btn" style="width: 100%" onclick="check()">LOGIN</button>
+                <div id="log" style="color: var(--error); font-size: 11px; margin-top: 10px;"></div>
+                <span class="toggle-link" onclick="showRegister()">Нет ID? Зарегистрироваться</span>
+            </div>
+
+            <!-- Register Panel -->
+            <div id="registerPanel">
+                <div style="font-size: 10px; color: var(--accent); margin-bottom: 20px;">// SYSTEM_REGISTRATION</div>
+                <input type="text" class="input" id="regUser" placeholder="NEW_OPERATOR_ID">
+                <button class="btn" style="width: 100%" onclick="register()">GENERATE_KEY</button>
+                <div id="regLog" style="color: var(--accent); font-size: 11px; margin-top: 10px;"></div>
+                <span class="toggle-link" onclick="showLogin()">Вернуться к логину</span>
+            </div>
+
+            <!-- Admin Panel -->
+            <div id="adminPanel">
+                <h2 style="font-family: 'Space Mono'; margin-bottom: 20px; color: var(--accent);">ACCESS GRANTED</h2>
+                <p style="font-size: 12px; margin-bottom: 20px; color: #aaa;">Добро пожаловать, оператор.</p>
+                <button class="btn" style="width: 100%; margin-bottom: 10px;" onclick="alert('DATA_STREAM: ACTIVE')">LOAD_NEURAL_DATA</button>
+                <button class="btn" style="width: 100%; border-color: var(--error); color: var(--error);" onclick="closeModal()">DISCONNECT</button>
+            </div>
         </div>
     </div>
 
     <script>
         const m = document.getElementById('modal');
+        const loginBox = document.getElementById('loginBox');
+        const regPanel = document.getElementById('registerPanel');
+        const adminPanel = document.getElementById('adminPanel');
+
         const openModal = () => m.classList.add('active');
+        const closeModal = () => m.classList.remove('active');
         
+        function showRegister() { loginBox.style.display = 'none'; regPanel.style.display = 'block'; }
+        function showLogin() { regPanel.style.display = 'none'; loginBox.style.display = 'block'; }
+
+        function register() {
+            const user = document.getElementById('regUser').value;
+            if(user.length > 3) {
+                document.getElementById('regLog').innerHTML = `КЛЮЧ СГЕНЕРИРОВАН:<br>ID: ${user}<br>KEY: 7777`;
+            } else {
+                document.getElementById('regLog').innerText = 'ID должен быть длиннее 3 символов';
+            }
+        }
+
         function check() {
-            if(document.getElementById('u').value === 'admin' && document.getElementById('p').value === '1234') {
+            const u = document.getElementById('u').value;
+            const p = document.getElementById('p').value;
+            if(u === 'admin' && p === '1234') {
                 document.getElementById('log').innerText = '> SYNCHRONIZING...';
-                document.getElementById('log').style.color = '#00ffcc';
+                document.getElementById('log').style.color = 'var(--accent)';
                 setTimeout(() => {
-                    document.getElementById('loginBox').style.display = 'none';
-                    document.getElementById('adminPanel').style.display = 'block';
+                    loginBox.style.display = 'none';
+                    adminPanel.style.display = 'block';
                 }, 1000);
             } else {
                 document.getElementById('log').innerText = '> ERROR: ACCESS_DENIED';
@@ -80,3 +117,9 @@
     </script>
 </body>
 </html>
+"""
+
+# Save the file
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+    
