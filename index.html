@@ -3,33 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VERTEX // Neural Systems & Cyber Security</title>
+    <title>VERTEX // Access Granted</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        html { scroll-behavior: smooth; background-color: #030303; color: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #030303; color: #ffffff; }
         
         /* ШАПКА */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 30px 10%; position: fixed; width: 100%; z-index: 100; transition: 0.4s; }
-        .logo { font-size: 22px; font-weight: 900; letter-spacing: 5px; color: #ffffff; text-decoration: none; }
-        .nav-links a { color: #555555; text-decoration: none; margin-left: 40px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
-        .nav-links a:hover { color: #ffffff; }
-
-        /* ГЛАВНЫЙ ЭКРАН */
-        .hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; }
-        .hero-content { max-width: 800px; }
-        h1 { font-size: 64px; line-height: 1.15; letter-spacing: -2px; margin-bottom: 30px; }
-        .hero p { font-size: 18px; color: #777777; margin-bottom: 45px; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 30px 10%; position: fixed; width: 100%; z-index: 100; }
+        .logo { font-size: 22px; font-weight: 900; letter-spacing: 5px; color: #fff; text-decoration: none; }
+        .nav-links a { color: #555; text-decoration: none; margin-left: 40px; font-size: 13px; text-transform: uppercase; }
         
-        .btn { padding: 18px 38px; font-size: 13px; text-transform: uppercase; border: none; cursor: pointer; font-weight: 600; background: #ffffff; color: #000; transition: 0.3s; }
+        /* ГЕРОЙ */
+        .hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; }
+        h1 { font-size: 64px; margin-bottom: 30px; }
+        .btn { padding: 18px 38px; font-size: 13px; text-transform: uppercase; border: none; cursor: pointer; font-weight: 600; background: #fff; color: #000; transition: 0.3s; }
         .btn:hover { background: #00ffcc; }
 
-        /* ТЕРМИНАЛ (ИСПРАВЛЕННЫЙ) */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        /* ТЕРМИНАЛ И ПАНЕЛЬ АДМИНИСТРАТОРА */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; }
         .modal-overlay.active { display: flex; }
-        .terminal-box { background: #070707; border: 1px solid #00ffcc; width: 400px; padding: 30px; border-radius: 6px; display: flex; flex-direction: column; gap: 15px; box-shadow: 0 0 30px rgba(0, 255, 204, 0.2); }
-        .terminal-header { color: #00ffcc; font-size: 11px; letter-spacing: 2px; display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .terminal-input { width: 100%; padding: 15px; background: #030303; border: 1px solid #333; color: #fff; border-radius: 4px; }
-        .terminal-input:focus { outline: none; border-color: #00ffcc; }
+        .terminal-box { background: #070707; border: 1px solid #00ffcc; width: 400px; padding: 30px; border-radius: 6px; }
+        .terminal-input { width: 100%; padding: 12px; margin-bottom: 10px; background: #030303; border: 1px solid #333; color: #fff; }
+        #adminPanel { display: none; text-align: center; }
+        #adminPanel h3 { color: #00ffcc; margin-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -38,48 +34,50 @@
         <a href="#" class="logo">VERTEX</a>
         <nav class="nav-links">
             <a href="#">Протоколы</a>
-            <a href="#">Связь</a>
             <a href="#" id="navTerminalBtn">Терминал</a>
         </nav>
     </header>
 
     <main class="hero">
-        <div class="hero-content">
+        <div>
             <h1>Интеллект высшего порядка.</h1>
-            <p>VERTEX создает закрытые нейросетевые экосистемы для транснациональных корпораций. Мы автоматизируем принятие бизнес-решений и защищаем данные на квантовом уровне.</p>
+            <p>Система защиты активна. Вход разрешен только авторизованным узлам.</p>
             <button class="btn" id="heroInitBtn">Инициализировать</button>
         </div>
     </main>
 
     <div class="modal-overlay" id="terminalModal">
-        <div class="terminal-box">
-            <div class="terminal-header"><span>ACCESS TERMINAL V1.0.9</span> <span id="closeModal" style="cursor:pointer">✕</span></div>
+        <div class="terminal-box" id="loginBox">
+            <div style="color: #00ffcc; margin-bottom: 15px; font-size: 11px;">ACCESS TERMINAL V1.0.9</div>
             <input type="text" class="terminal-input" id="termUser" placeholder="ID ОПЕРАТОРА (admin)">
             <input type="password" class="terminal-input" id="termPass" placeholder="КВАНТОВЫЙ КЛЮЧ (1234)">
-            <button class="btn" style="width: 100%; background: #fff;" id="termSubmit">УСТАНОВИТЬ СОЕДИНЕНИЕ</button>
-            <div id="termLog" style="color: #fff; font-size: 12px; margin-top: 10px; font-family: monospace;"></div>
+            <button class="btn" style="width: 100%" id="termSubmit">ПОДКЛЮЧИТЬСЯ</button>
+            <div id="termLog" style="color: #ff3355; font-size: 12px; margin-top: 10px;"></div>
+        </div>
+
+        <!-- Секретная панель (появляется после входа) -->
+        <div class="terminal-box" id="adminPanel">
+            <h3>ДОСТУП ПОДТВЕРЖДЕН</h3>
+            <p style="margin-bottom: 20px; color: #777; font-size: 14px;">Система CORE-9 ожидает команды:</p>
+            <button class="btn" style="width: 100%; margin-bottom: 10px;" onclick="alert('Загрузка протоколов... 100%')">ЗАГРУЗИТЬ ПРОТОКОЛЫ</button>
+            <button class="btn" style="width: 100%; background: #333; color: #fff;" onclick="location.reload()">ВЫЙТИ</button>
         </div>
     </div>
 
     <script>
         const modal = document.getElementById('terminalModal');
-        const openModal = () => modal.classList.add('active');
-        const closeModal = () => modal.classList.remove('active');
+        const loginBox = document.getElementById('loginBox');
+        const adminPanel = document.getElementById('adminPanel');
 
-        document.getElementById('heroInitBtn').onclick = openModal;
-        document.getElementById('navTerminalBtn').onclick = openModal;
-        document.getElementById('closeModal').onclick = closeModal;
+        document.getElementById('heroInitBtn').onclick = () => modal.classList.add('active');
+        document.getElementById('navTerminalBtn').onclick = () => modal.classList.add('active');
 
         document.getElementById('termSubmit').onclick = () => {
-            const u = document.getElementById('termUser').value;
-            const p = document.getElementById('termPass').value;
-            const log = document.getElementById('termLog');
-            if(u === 'admin' && p === '1234') {
-                log.innerText = '> ДОСТУП РАЗРЕШЕН. СИНХРОНИЗАЦИЯ...';
-                log.style.color = '#00ffcc';
+            if(document.getElementById('termUser').value === 'admin' && document.getElementById('termPass').value === '1234') {
+                loginBox.style.display = 'none';
+                adminPanel.style.display = 'block';
             } else {
-                log.innerText = '> ОШИБКА: НЕВЕРНЫЙ КЛЮЧ';
-                log.style.color = '#ff3355';
+                document.getElementById('termLog').innerText = '> ОШИБКА: Доступ запрещен';
             }
         };
     </script>
