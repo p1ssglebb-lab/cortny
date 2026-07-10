@@ -15,7 +15,7 @@
 
         html {
             scroll-behavior: smooth;
-            background-color: #030303; /* Глубокий хакерский черный */
+            background-color: #030303;
             color: #ffffff;
         }
 
@@ -39,6 +39,7 @@
             font-weight: 900;
             letter-spacing: 5px;
             color: #ffffff;
+            text-decoration: none;
         }
 
         .nav-links a {
@@ -52,7 +53,7 @@
         }
 
         .nav-links a:hover {
-            color: #00ffcc; /* Акцентный неоновый цвет при наведении */
+            color: #00ffcc;
         }
 
         /* Главный блок (Hero Section) */
@@ -71,7 +72,7 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 6px;
-            color: #00ffcc; /* Тонкий неоновый подтекст */
+            color: #00ffcc;
             display: block;
             margin-bottom: 25px;
         }
@@ -101,17 +102,19 @@
         .btn {
             padding: 18px 38px;
             font-size: 13px;
-            border-radius: 4px; /* Более строгие, квадратные хакерские формы */
+            border-radius: 4px;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .btn-primary {
             background-color: #ffffff;
             color: #000000;
+            border: none;
         }
 
         .btn-primary:hover {
@@ -121,18 +124,49 @@
 
         .btn-secondary {
             color: #ffffff;
+            background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-secondary:hover {
-            background: rgba(0, 255, 255, 0.02);
+            background: rgba(0, 255, 204, 0.02);
             border-color: #00ffcc;
         }
 
-        /* Блок Услуг (Services Section) */
+        /* Блок статистики (Новый!) */
+        .stats-section {
+            padding: 80px 10%;
+            background-color: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-size: 42px;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .stat-item p {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #444444;
+            letter-spacing: 2px;
+        }
+
+        /* Блок Услуг */
         .services-section {
             padding: 140px 10%;
-            background-color: #070707;
+            background-color: #030303;
         }
 
         .section-title {
@@ -149,7 +183,7 @@
         }
 
         .card {
-            background: #0d0d0d;
+            background: #070707;
             border: 1px solid rgba(255, 255, 255, 0.02);
             padding: 40px;
             border-radius: 8px;
@@ -158,7 +192,7 @@
 
         .card:hover {
             transform: translateY(-8px);
-            border-color: rgba(0, 255, 204, 0.3); /* Аккуратная неоновая подсветка карты */
+            border-color: rgba(0, 255, 204, 0.3);
             box-shadow: 0 10px 30px rgba(0, 255, 204, 0.02);
         }
 
@@ -181,17 +215,113 @@
             color: #555555;
             line-height: 1.6;
         }
+
+        /* Подвал (Новый!) */
+        .footer {
+            padding: 60px 10%;
+            background-color: #030303;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #444444;
+        }
+
+        .footer-links a {
+            color: #444444;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Модальное окно терминала (Новое!) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .terminal-box {
+            background: #070707;
+            border: 1px solid #00ffcc;
+            width: 450px;
+            border-radius: 6px;
+            padding: 30px;
+            box-shadow: 0 0 40px rgba(0, 255, 204, 0.1);
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #00ffcc;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: #555555;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #ffffff;
+        }
+
+        .terminal-input {
+            width: 100%;
+            background: #030303;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 14px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .terminal-input:focus {
+            outline: none;
+            border-color: #00ffcc;
+        }
     </style>
 </head>
 <body>
 
     <!-- Навигация -->
     <header class="navbar">
-        <div class="logo">VERTEX</div>
+        <a href="#" class="logo">VERTEX</a>
         <nav class="nav-links">
-            <a href="#about">Системы</a>
             <a href="#services">Протоколы</a>
-            <a href="#contacts">Терминал</a>
+            <a href="#" id="navTerminalBtn">Терминал</a>
         </nav>
     </header>
 
@@ -202,40 +332,77 @@
             <h1>Интеллект высшего порядка.</h1>
             <p>VERTEX создает закрытые нейросетевые экосистемы для транснациональных корпораций. Мы автоматизируем принятие бизнес-решений и защищаем данные на квантовом уровне.</p>
             <div class="cta-group">
-                <a href="#services" class="btn btn-primary">Инициализировать</a>
-                <a href="#contacts" class="btn btn-secondary">Связь →</a>
+                <button class="btn btn-primary" id="heroInitBtn">Инициализировать</button>
+                <button class="btn btn-secondary" id="heroConnBtn">Связь →</button>
             </div>
         </div>
     </main>
+
+    <!-- Блок Статистики -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h4>14.8B</h4>
+                <p>Запросов/сек</p>
+            </div>
+            <div class="stat-item">
+                <h4>99.99%</h4>
+                <p>Безопасность</p>
+            </div>
+            <div class="stat-item">
+                <h4>42</h4>
+                <p>Корпорации-клиенты</p>
+            </div>
+            <div class="stat-item">
+                <h4>&lt;1мс</h4>
+                <p>Отклик нейросети</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Блок Услуг -->
     <section id="services" class="services-section">
         <h2 class="section-title">Технологические протоколы</h2>
         <div class="grid">
-            
-            <!-- Карточка 1 -->
             <div class="card">
                 <span class="card-icon">🧠</span>
                 <h3>Синтез ИИ-ассистентов</h3>
                 <p>Развертывание персональных цифровых аватаров на базе генеративных моделей класса Core-9. Полная имитация вашего стиля управления 24/7.</p>
             </div>
-
-            <!-- Карточка 2 -->
             <div class="card">
                 <span class="card-icon">👁️</span>
                 <h3>Нейроинтерфейсы</h3>
                 <p>Внедрение бесконтактных систем управления корпоративным софтом. Считывание паттернов внимания и мгновенный отклик систем безопасности.</p>
             </div>
-
-            <!-- Карточка 3 -->
             <div class="card">
                 <span class="card-icon">🛡️</span>
                 <h3>Квантовое шифрование</h3>
                 <p>Защита каналов связи от любых видов кибератак будущего. Алгоритмы шифрования с динамическим изменением ключа на базе квантовых состояний.</p>
             </div>
-
         </div>
     </section>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div>© 2026 VERTEX SYSTEMS. ALL RIGHTS RESERVED.</div>
+        <div class="footer-links">
+            <a href="#">Условия</a>
+            <a href="#">Приватность</a>
+        </div>
+    </footer>
+
+    <!-- Модальное окно Терминала -->
+    <div class="modal-overlay" id="terminalModal">
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <span>Access Terminal v1.0.4</span>
+                <button class="close-btn" id="closeModalBtn">✕</button>
+            </div>
+            <input type="text" class="terminal-input" placeholder="ID ПОЛЬЗОВАТЕЛЯ..." autocomplete="off">
+            <input type="password" class="terminal-input" placeholder="КВАНТОВЫЙ КЛЮЧ ДОСТУПА...">
+            <button class="btn btn-primary" style="width: 100%;" onclick="alert('Доступ заблокирован. Требуется нейро-авторизация.')">Подключиться</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
