@@ -4,7 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA / Инновационные решения для бизнеса</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Обнуление и базовые настройки */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: #0d0d0d; /* Глубокий премиальный черный */
+            color: #ffffff;
+        }
+
+        /* Шапка сайта */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 10%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px); /* Эффект матового стекла */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 4px;
+        }
+
+        .nav-links a {
+            color: #888888;
+            text-decoration: none;
+            margin-left: 40px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Главный блок (Hero Section) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #888888;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #aaaaaa;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* Кнопки */
+        .cta-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 16px 35px;
+            font-size: 14px;
+            border-radius: 50px; /* Округлые стильные кнопки */
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #cccccc;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
 
