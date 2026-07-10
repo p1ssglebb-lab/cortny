@@ -5,17 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERTEX // Neural Systems & Cyber Security</title>
     <style>
-        /* --- БАЗОВЫЕ НАСТРОЙКИ И ПЕРЕМЕННЫЕ --- */
-        :root {
-            --bg-main: #030303;
-            --bg-card: #070707;
-            --accent: #00ffcc;
-            --accent-glow: rgba(0, 255, 204, 0.15);
-            --text-main: #ffffff;
-            --text-muted: #555555;
-            --text-para: #888888;
-        }
-
+        /* --- БАЗОВЫЕ НАСТРОЙКИ --- */
         * {
             margin: 0;
             padding: 0;
@@ -25,12 +15,12 @@
 
         html {
             scroll-behavior: smooth;
-            background-color: var(--bg-main);
-            color: var(--text-main);
+            background-color: #030303;
+            color: #ffffff;
             overflow-x: hidden;
         }
 
-        /* --- НАВИГАЦИЯ (APPLE-STYLE) --- */
+        /* --- ШАПКА --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -42,7 +32,7 @@
             z-index: 100;
             background: transparent;
             border-bottom: 1px solid transparent;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s ease;
         }
 
         .navbar.scrolled {
@@ -57,17 +47,12 @@
             font-size: 22px;
             font-weight: 900;
             letter-spacing: 5px;
-            color: var(--text-main);
+            color: #ffffff;
             text-decoration: none;
-            transition: text-shadow 0.3s;
-        }
-        
-        .logo:hover {
-            text-shadow: 0 0 10px var(--accent);
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: #555555;
             text-decoration: none;
             margin-left: 40px;
             font-size: 13px;
@@ -78,32 +63,28 @@
         }
 
         .nav-links a:hover {
-            color: var(--text-main);
+            color: #ffffff;
         }
 
-        /* --- ГЛАВНЫЙ ЭКРАН (HERO) --- */
+        /* --- ГЛАВНЫЙ ЭКРАН --- */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             padding: 0 10%;
-            position: relative;
         }
 
         .hero-content {
             max-width: 850px;
-            position: relative;
-            z-index: 2;
         }
 
         .subtitle {
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 6px;
-            color: var(--accent);
+            color: #00ffcc;
             display: block;
             margin-bottom: 25px;
-            animation: fadeIn 1s ease-out;
         }
 
         h1 {
@@ -117,16 +98,15 @@
         .hero p {
             font-size: clamp(15px, 2vw, 18px);
             line-height: 1.6;
-            color: var(--text-para);
+            color: #888888;
             margin-bottom: 45px;
             max-width: 650px;
         }
 
-        /* --- СТИЛЬНЫЕ КНОПКИ --- */
+        /* --- КНОПКИ --- */
         .cta-group {
             display: flex;
             gap: 20px;
-            flex-wrap: wrap;
         }
 
         .btn {
@@ -138,37 +118,36 @@
             letter-spacing: 1.5px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s ease;
             display: inline-block;
             text-align: center;
         }
 
         .btn-primary {
-            background-color: var(--text-main);
+            background-color: #ffffff;
             color: #000000;
             border: none;
         }
 
         .btn-primary:hover {
-            background-color: var(--accent);
+            background-color: #00ffcc;
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0, 255, 204, 0.3);
         }
 
         .btn-secondary {
-            color: var(--text-main);
+            color: #ffffff;
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-secondary:hover {
             background: rgba(0, 255, 204, 0.02);
-            border-color: var(--accent);
+            border-color: #00ffcc;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 255, 204, 0.05);
         }
 
-        /* --- БЛОК СТАТИСТИКИ --- */
+        /* --- СТАТИСТИКА --- */
         .stats-section {
             padding: 100px 10%;
             background-color: #050505;
@@ -186,14 +165,9 @@
         .stat-item h4 {
             font-size: 46px;
             font-weight: 200;
-            color: var(--text-main);
+            color: #ffffff;
             margin-bottom: 10px;
             letter-spacing: -1px;
-            transition: color 0.3s;
-        }
-
-        .stat-item:hover h4 {
-            color: var(--accent);
         }
 
         .stat-item p {
@@ -203,7 +177,7 @@
             letter-spacing: 2px;
         }
 
-        /* --- БЛОК ПРОТОКОЛОВ (КАРТОЧКИ) --- */
+        /* --- ПРОТОКОЛЫ --- */
         .services-section {
             padding: 140px 10%;
         }
@@ -222,29 +196,23 @@
         }
 
         .card {
-            background: var(--bg-card);
+            background: #070707;
             border: 1px solid rgba(255, 255, 255, 0.02);
             padding: 45px;
             border-radius: 6px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s ease;
         }
 
         .card:hover {
             transform: translateY(-10px);
             border-color: rgba(0, 255, 204, 0.25);
-            box-shadow: 0 15px 35px rgba(0, 255, 204, 0.03);
         }
 
         .card-icon {
             font-size: 32px;
             margin-bottom: 25px;
             display: block;
-            color: var(--accent);
-            transition: transform 0.3s;
-        }
-
-        .card:hover .card-icon {
-            transform: scale(1.1);
+            color: #00ffcc;
         }
 
         .card h3 {
@@ -256,11 +224,11 @@
 
         .card p {
             font-size: 14px;
-            color: var(--text-para);
+            color: #888888;
             line-height: 1.6;
         }
 
-        /* --- БЛОК ФОРМЫ СВЯЗИ --- */
+        /* --- СВЯЗЬ --- */
         .contact-section {
             padding: 140px 10%;
             background-color: #050505;
@@ -293,7 +261,7 @@
             background: #0d0d0d;
             border: 1px solid rgba(255, 255, 255, 0.04);
             padding: 18px;
-            color: var(--text-main);
+            color: #ffffff;
             border-radius: 4px;
             font-size: 14px;
             transition: all 0.3s;
@@ -301,25 +269,11 @@
 
         .form-input:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: #00ffcc;
             background: #111111;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.05);
         }
 
-        /* --- УМНЫЕ СЦЕНАРИИ АНИМАЦИИ (SCROLL REVEAL) --- */
-        .reveal {
-            position: relative;
-            transform: translateY(40px);
-            opacity: 0;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* --- ПОДВАЛ (FOOTER) --- */
+        /* --- ПОДВАЛ --- */
         .footer {
             padding: 60px 10%;
             border-top: 1px solid rgba(255, 255, 255, 0.02);
@@ -340,10 +294,10 @@
         }
 
         .footer-links a:hover {
-            color: var(--text-main);
+            color: #ffffff;
         }
 
-        /* --- ХАКЕРСКИЙ ТЕРМИНАЛ (МОДАЛКА) --- */
+        /* --- МОДАЛЬНОЕ ОКНО --- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -359,7 +313,7 @@
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.3s ease;
         }
 
         .modal-overlay.active {
@@ -368,27 +322,21 @@
         }
 
         .terminal-box {
-            background: var(--bg-card);
-            border: 1px solid var(--accent);
+            background: #070707;
+            border: 1px solid #00ffcc;
             width: 100%;
             max-width: 460px;
             margin: 20px;
             border-radius: 6px;
             padding: 35px;
             box-shadow: 0 20px 50px rgba(0, 255, 204, 0.1);
-            transform: scale(0.95);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .modal-overlay.active .terminal-box {
-            transform: scale(1);
         }
 
         .terminal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--accent);
+            color: #00ffcc;
             font-size: 11px;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -400,14 +348,13 @@
         .close-btn {
             background: transparent;
             border: none;
-            color: var(--text-muted);
+            color: #555555;
             font-size: 16px;
             cursor: pointer;
-            transition: color 0.3s;
         }
 
         .close-btn:hover {
-            color: var(--text-main);
+            color: #ffffff;
         }
 
         .terminal-status-log {
@@ -415,22 +362,25 @@
             font-size: 12px;
             margin-top: 15px;
             min-height: 20px;
-            line-height: 1.5;
         }
 
-        /* Адаптивность для смартфонов */
+        /* Элементы теперь видимы изначально, анимация просто делает плавный въезд */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @media (max-width: 768px) {
             .navbar { padding: 20px 5%; }
-            .navbar.scrolled { padding: 15px 5%; }
-            .nav-links { display: none; } /* Скрываем громоздкое меню на мобилках */
+            .nav-links { display: none; }
             .hero { padding: 0 5%; }
             .stats-section, .services-section, .contact-section, .footer { padding: 80px 5%; }
-            .contact-container { gap: 40px; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -450,7 +400,7 @@
     <main class="hero">
         <div class="hero-content">
             <span class="subtitle">Neural Systems & Cyber Security</span>
-            <h1 class="data-scramble-once">Интеллект высшего порядка.</h1>
+            <h1>Интеллект высшего порядка.</h1>
             <p>VERTEX создает закрытые нейросетевые экосистемы для транснациональных корпораций. Мы автоматизируем принятие бизнес-решений и защищаем данные на квантовом уровне.</p>
             <div class="cta-group">
                 <button class="btn btn-primary" id="heroInitBtn">Инициализировать</button>
@@ -481,7 +431,7 @@
         </div>
     </section>
 
-    <!-- БЛОК УСЛУГ / ПРОТОКОЛОВ -->
+    <!-- БЛОК ПРОТОКОЛОВ -->
     <section id="services" class="services-section reveal">
         <h2 class="section-title">Технологические протоколы</h2>
         <div class="grid">
@@ -528,23 +478,23 @@
         </div>
     </footer>
 
-    <!-- ХАКЕРСКИЙ ТЕРМИНАЛ -->
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal-overlay" id="terminalModal">
         <div class="terminal-box">
             <div class="terminal-header">
                 <span>Access Terminal v1.0.9</span>
                 <button class="close-btn" id="closeModalBtn">✕</button>
             </div>
-            <input type="text" class="terminal-input" id="termUser" placeholder="ID ОПЕРАТОРА (например, admin)..." autocomplete="off">
-            <input type="password" class="terminal-input" id="termPass" placeholder="КВАНТОВЫЙ КЛЮЧ ДОСТУПА (например, 1234)...">
+            <input type="text" class="terminal-input" id="termUser" placeholder="ID ОПЕРАТОРА (admin)..." autocomplete="off">
+            <input type="password" class="terminal-input" id="termPass" placeholder="КВАНТОВЫЙ КЛЮЧ ДОСТУПА (1234)...">
             <button class="btn btn-primary" style="width: 100%;" id="termSubmit">Установить соединение</button>
             <div class="terminal-status-log" id="termLog"></div>
         </div>
     </div>
 
-    <!-- --- ИНТЕЛЛЕКТУАЛЬНЫЙ СКРИПТ УПРАВЛЕНИЯ --- -->
+    <!-- --- НАДЁЖНЫЙ СКРИПТ --- -->
     <script>
-        // 1. УПРАВЛЕНИЕ МОДАЛЬНЫМ ОКНОМ ТЕРМИНАЛА
+        // Модалка
         const modal = document.getElementById('terminalModal');
         const termLog = document.getElementById('termLog');
         const openButtons = [document.getElementById('heroInitBtn'), document.getElementById('navTerminalBtn')];
@@ -557,11 +507,17 @@
         }
         function closeModal() { modal.classList.remove('active'); }
 
-        openButtons.forEach(btn => btn && btn.addEventListener('click', openModal));
+        openButtons.forEach(btn => {
+            if(btn) btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+        
         document.getElementById('closeModalBtn').addEventListener('click', closeModal);
         modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
 
-        // Система проверки доступов в терминале
+        // Вход в терминал
         document.getElementById('termSubmit').addEventListener('click', () => {
             const user = document.getElementById('termUser').value.trim();
             const pass = document.getElementById('termPass').value.trim();
@@ -571,23 +527,23 @@
 
             setTimeout(() => {
                 if (user.toLowerCase() === 'admin' && pass === '1234') {
-                    termLog.style.color = var(--accent);
-                    termLog.innerText = '> СИНХРОНИЗАЦИЯ УСПЕШНА. Добро пожаловать, Создатель. Доступ к ядру Core-9 открыт.';
+                    termLog.style.color = '#00ffcc';
+                    termLog.innerText = '> СИНХРОНИЗАЦИЯ УСПЕШНА. Добро пожаловать, Создатель. Доступ открыт.';
                 } else {
                     termLog.style.color = '#ff3355';
-                    termLog.innerText = '> ОШИБКА: Неверный токен доступа. Запрос заблокирован квантовым файрволом.';
+                    termLog.innerText = '> ОШИБКА: Неверный токен доступа. Запрос заблокирован.';
                 }
-            }, 600);
+            }, 500);
         });
 
-        // Форма отправки заявок
+        // Отправка формы
         document.getElementById('mainContactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Связь установлена. Пакет данных успешно зашифрован и отправлен на сервера VERTEX. Наш ИИ анализирует ваш стек.');
+            alert('Связь установлена. Пакет данных зашифрован и отправлен.');
             this.reset();
         });
 
-        // 2. ИНТЕЛЛЕКТУАЛЬНАЯ ШАПКА ПРИ СКРОЛЛЕ
+        // Скролл шапки
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 40) {
@@ -597,11 +553,11 @@
             }
         });
 
-        // 3. ПЛАВНОЕ ПОЯВЛЕНИЕ ЭЛЕМЕНТОВ (SCROLL REVEAL)
+        // Появление блоков
         const reveals = document.querySelectorAll('.reveal');
         function checkReveal() {
             reveals.forEach(el => {
-                const triggerPoint = window.innerHeight - 120;
+                const triggerPoint = window.innerHeight - 50;
                 const elementTop = el.getBoundingClientRect().top;
                 if (elementTop < triggerPoint) {
                     el.classList.add('active');
@@ -609,9 +565,9 @@
             });
         }
         window.addEventListener('scroll', checkReveal);
-        checkReveal(); // Проверка при старте
+        checkReveal();
 
-        // 4. ЭФФЕКТ ХАКЕРСКОЙ ДЕШИФРОВКИ (ДЛЯ МЕНЮ)
+        // Буквы в меню
         const glyphs = "ABCDEFGHIKLMNOPQRSTUVWXYZZ0123456789_//--*";
         document.querySelectorAll('.data-scramble').forEach(el => {
             const original = el.innerText;
