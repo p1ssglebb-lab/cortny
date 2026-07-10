@@ -64,20 +64,38 @@
         </div>
     </div>
 
-    <script>
+   <script>
         const modal = document.getElementById('terminalModal');
         const loginBox = document.getElementById('loginBox');
         const adminPanel = document.getElementById('adminPanel');
+        const termLog = document.getElementById('termLog');
 
+        // Открытие
         document.getElementById('heroInitBtn').onclick = () => modal.classList.add('active');
         document.getElementById('navTerminalBtn').onclick = () => modal.classList.add('active');
+        
+        // Закрытие (если нужно)
+        document.getElementById('closeModal')?.onclick = () => modal.classList.remove('active');
 
+        // Логика входа
         document.getElementById('termSubmit').onclick = () => {
-            if(document.getElementById('termUser').value === 'admin' && document.getElementById('termPass').value === '1234') {
-                loginBox.style.display = 'none';
-                adminPanel.style.display = 'block';
+            const u = document.getElementById('termUser').value;
+            const p = document.getElementById('termPass').value;
+            
+            if(u === 'admin' && p === '1234') {
+                termLog.innerText = '> ДОСТУП РАЗРЕШЕН. СИНХРОНИЗАЦИЯ...';
+                termLog.style.color = '#00ffcc';
+                
+                // Добавляем задержку 1.5 секунды, чтобы пользователь увидел надпись
+                setTimeout(() => {
+                    loginBox.style.display = 'none';
+                    adminPanel.style.display = 'flex'; // Делаем панель видимой
+                    adminPanel.style.flexDirection = 'column'; // Сохраняем верстку
+                }, 1500);
+                
             } else {
-                document.getElementById('termLog').innerText = '> ОШИБКА: Доступ запрещен';
+                termLog.innerText = '> ОШИБКА: НЕВЕРНЫЙ КЛЮЧ';
+                termLog.style.color = '#ff3355';
             }
         };
     </script>
