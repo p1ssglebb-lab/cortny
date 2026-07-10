@@ -17,9 +17,10 @@
             scroll-behavior: smooth;
             background-color: #030303;
             color: #ffffff;
+            overflow-x: hidden;
         }
 
-        /* Шапка сайта */
+        /* Шапка сайта (Добавили плавный переход для скролла) */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -29,6 +30,14 @@
             width: 100%;
             top: 0;
             z-index: 100;
+            background: transparent; /* Изначально прозрачная */
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        /* Класс, который будет добавляться через JS при скролле */
+        .navbar.scrolled {
+            padding: 20px 10%;
             background: rgba(3, 3, 3, 0.85);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.02);
@@ -49,11 +58,7 @@
             font-size: 13px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #00ffcc;
+            display: inline-block;
         }
 
         /* Главный блок (Hero Section) */
@@ -133,7 +138,7 @@
             border-color: #00ffcc;
         }
 
-        /* Блок статистики (Новый!) */
+        /* Блок статистики */
         .stats-section {
             padding: 80px 10%;
             background-color: #050505;
@@ -216,7 +221,20 @@
             line-height: 1.6;
         }
 
-        /* Подвал (Новый!) */
+        /* КЛАССЫ ДЛЯ АНИМАЦИИ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ */
+        .reveal {
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Подвал сайта */
         .footer {
             padding: 60px 10%;
             background-color: #030303;
@@ -239,7 +257,7 @@
             color: #ffffff;
         }
 
-        /* Модальное окно терминала (Новое!) */
+        /* Модальное окно Терминала */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -317,11 +335,11 @@
 <body>
 
     <!-- Навигация -->
-    <header class="navbar">
-        <a href="#" class="logo">VERTEX</a>
+    <header class="navbar" id="navbar">
+        <a href="#" class="logo data-scramble">VERTEX</a>
         <nav class="nav-links">
-            <a href="#services">Протоколы</a>
-            <a href="#" id="navTerminalBtn">Терминал</a>
+            <a href="#services" class="data-scramble">Протоколы</a>
+            <a href="#" id="navTerminalBtn" class="data-scramble">Терминал</a>
         </nav>
     </header>
 
@@ -338,8 +356,8 @@
         </div>
     </main>
 
-    <!-- Блок Статистики -->
-    <section class="stats-section">
+    <!-- Блок Статистики (Добавили класс reveal) -->
+    <section class="stats-section reveal">
         <div class="stats-grid">
             <div class="stat-item">
                 <h4>14.8B</h4>
@@ -360,8 +378,8 @@
         </div>
     </section>
 
-    <!-- Блок Услуг -->
-    <section id="services" class="services-section">
+    <!-- Блок Услуг (Добавили класс reveal) -->
+    <section id="services" class="services-section reveal">
         <h2 class="section-title">Технологические протоколы</h2>
         <div class="grid">
             <div class="card">
