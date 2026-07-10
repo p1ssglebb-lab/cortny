@@ -3,101 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VERTEX // Access Granted</title>
+    <title>VERTEX // Neural Systems</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #030303; color: #ffffff; }
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;900&display=swap');
         
-        /* ШАПКА */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 30px 10%; position: fixed; width: 100%; z-index: 100; }
-        .logo { font-size: 22px; font-weight: 900; letter-spacing: 5px; color: #fff; text-decoration: none; }
-        .nav-links a { color: #555; text-decoration: none; margin-left: 40px; font-size: 13px; text-transform: uppercase; }
-        
-        /* ГЕРОЙ */
-        .hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; }
-        h1 { font-size: 64px; margin-bottom: 30px; }
-        .btn { padding: 18px 38px; font-size: 13px; text-transform: uppercase; border: none; cursor: pointer; font-weight: 600; background: #fff; color: #000; transition: 0.3s; }
-        .btn:hover { background: #00ffcc; }
+        :root { --accent: #00ffcc; --bg: #030303; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-        /* ТЕРМИНАЛ И ПАНЕЛЬ АДМИНИСТРАТОРА */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 1000; }
-        .modal-overlay.active { display: flex; }
-        .terminal-box { background: #070707; border: 1px solid #00ffcc; width: 400px; padding: 30px; border-radius: 6px; }
-        .terminal-input { width: 100%; padding: 12px; margin-bottom: 10px; background: #030303; border: 1px solid #333; color: #fff; }
-        #adminPanel { display: none; text-align: center; }
-        #adminPanel h3 { color: #00ffcc; margin-bottom: 20px; }
+        /* Фоновая сетка */
+        body::before { content: ""; position: fixed; top:0; left:0; width:100%; height:100%; background-image: radial-gradient(#00ffcc0a 1px, transparent 1px); background-size: 40px 40px; z-index: -1; }
+
+        /* Навигация */
+        .navbar { padding: 40px 10%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Space Mono', monospace; font-size: 24px; font-weight: 700; color: var(--accent); letter-spacing: 5px; }
+        
+        /* Главный экран */
+        .hero { height: 100vh; display: flex; align-items: center; padding: 0 10%; }
+        h1 { font-size: 80px; text-transform: uppercase; line-height: 0.9; margin-bottom: 30px; }
+        .btn { padding: 20px 40px; background: transparent; border: 1px solid var(--accent); color: var(--accent); cursor: pointer; font-family: 'Space Mono'; transition: 0.4s; }
+        .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 30px var(--accent); }
+
+        /* Терминал */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000e; display: none; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px); }
+        .modal.active { display: flex; }
+        .box { background: #0a0a0a; border: 1px solid var(--accent); width: 400px; padding: 40px; position: relative; }
+        .input { width: 100%; background: #000; border: 1px solid #333; padding: 15px; color: var(--accent); margin-bottom: 10px; font-family: 'Space Mono'; }
+        #adminPanel { display: none; }
     </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <a href="#" class="logo">VERTEX</a>
-        <nav class="nav-links">
-            <a href="#">Протоколы</a>
-            <a href="#" id="navTerminalBtn">Терминал</a>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <div class="logo">VERTEX</div>
+        <button class="btn" onclick="openModal()">TERMINAL_ACCESS</button>
+    </nav>
 
     <main class="hero">
         <div>
-            <h1>Интеллект высшего порядка.</h1>
-            <p>Система защиты активна. Вход разрешен только авторизованным узлам.</p>
-            <button class="btn" id="heroInitBtn">Инициализировать</button>
+            <h1>NEURAL<br>SYSTEMS</h1>
+            <button class="btn" onclick="openModal()">ИНИЦИАЛИЗАЦИЯ</button>
         </div>
     </main>
 
-    <div class="modal-overlay" id="terminalModal">
-        <div class="terminal-box" id="loginBox">
-            <div style="color: #00ffcc; margin-bottom: 15px; font-size: 11px;">ACCESS TERMINAL V1.0.9</div>
-            <input type="text" class="terminal-input" id="termUser" placeholder="ID ОПЕРАТОРА (admin)">
-            <input type="password" class="terminal-input" id="termPass" placeholder="КВАНТОВЫЙ КЛЮЧ (1234)">
-            <button class="btn" style="width: 100%" id="termSubmit">ПОДКЛЮЧИТЬСЯ</button>
-            <div id="termLog" style="color: #ff3355; font-size: 12px; margin-top: 10px;"></div>
+    <div class="modal" id="modal">
+        <div class="box" id="loginBox">
+            <div style="font-size: 10px; color: var(--accent); margin-bottom: 20px;">// SYSTEM_AUTH_REQUIRED</div>
+            <input type="text" class="input" id="u" placeholder="OPERATOR_ID">
+            <input type="password" class="input" id="p" placeholder="QUANTUM_KEY">
+            <button class="btn" style="width: 100%" onclick="check()">LOGIN</button>
+            <div id="log" style="color: #ff3355; font-size: 11px; margin-top: 10px;"></div>
         </div>
-
-        <!-- Секретная панель (появляется после входа) -->
-        <div class="terminal-box" id="adminPanel">
-            <h3>ДОСТУП ПОДТВЕРЖДЕН</h3>
-            <p style="margin-bottom: 20px; color: #777; font-size: 14px;">Система CORE-9 ожидает команды:</p>
-            <button class="btn" style="width: 100%; margin-bottom: 10px;" onclick="alert('Загрузка протоколов... 100%')">ЗАГРУЗИТЬ ПРОТОКОЛЫ</button>
-            <button class="btn" style="width: 100%; background: #333; color: #fff;" onclick="location.reload()">ВЫЙТИ</button>
+        <div class="box" id="adminPanel">
+            <h2 style="font-family: 'Space Mono'; margin-bottom: 20px;">ACCESS GRANTED</h2>
+            <button class="btn" style="width: 100%; margin-bottom: 10px;" onclick="alert('DATA_STREAM: ACTIVE')">LOAD_NEURAL_DATA</button>
+            <button class="btn" style="width: 100%; border-color: #ff3355; color: #ff3355;" onclick="location.reload()">DISCONNECT</button>
         </div>
     </div>
 
-   <script>
-        const modal = document.getElementById('terminalModal');
-        const loginBox = document.getElementById('loginBox');
-        const adminPanel = document.getElementById('adminPanel');
-        const termLog = document.getElementById('termLog');
-
-        // Открытие
-        document.getElementById('heroInitBtn').onclick = () => modal.classList.add('active');
-        document.getElementById('navTerminalBtn').onclick = () => modal.classList.add('active');
+    <script>
+        const m = document.getElementById('modal');
+        const openModal = () => m.classList.add('active');
         
-        // Закрытие (если нужно)
-        document.getElementById('closeModal')?.onclick = () => modal.classList.remove('active');
-
-        // Логика входа
-        document.getElementById('termSubmit').onclick = () => {
-            const u = document.getElementById('termUser').value;
-            const p = document.getElementById('termPass').value;
-            
-            if(u === 'admin' && p === '1234') {
-                termLog.innerText = '> ДОСТУП РАЗРЕШЕН. СИНХРОНИЗАЦИЯ...';
-                termLog.style.color = '#00ffcc';
-                
-                // Добавляем задержку 1.5 секунды, чтобы пользователь увидел надпись
+        function check() {
+            if(document.getElementById('u').value === 'admin' && document.getElementById('p').value === '1234') {
+                document.getElementById('log').innerText = '> SYNCHRONIZING...';
+                document.getElementById('log').style.color = '#00ffcc';
                 setTimeout(() => {
-                    loginBox.style.display = 'none';
-                    adminPanel.style.display = 'flex'; // Делаем панель видимой
-                    adminPanel.style.flexDirection = 'column'; // Сохраняем верстку
-                }, 1500);
-                
+                    document.getElementById('loginBox').style.display = 'none';
+                    document.getElementById('adminPanel').style.display = 'block';
+                }, 1000);
             } else {
-                termLog.innerText = '> ОШИБКА: НЕВЕРНЫЙ КЛЮЧ';
-                termLog.style.color = '#ff3355';
+                document.getElementById('log').innerText = '> ERROR: ACCESS_DENIED';
             }
-        };
+        }
     </script>
 </body>
 </html>
