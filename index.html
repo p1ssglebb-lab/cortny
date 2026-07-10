@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA / Инновационные решения для бизнеса</title>
+    <title>VERTEX // Neural Systems & Cyber Security</title>
     <style>
         /* Обнуление и базовые настройки */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         html {
             scroll-behavior: smooth;
-            background-color: #0d0d0d; /* Глубокий премиальный черный */
+            background-color: #030303; /* Глубокий хакерский черный */
             color: #ffffff;
         }
 
@@ -29,27 +29,30 @@
             width: 100%;
             top: 0;
             z-index: 100;
-            background: rgba(13, 13, 13, 0.8);
-            backdrop-filter: blur(10px); /* Эффект матового стекла */
+            background: rgba(3, 3, 3, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 4px;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 5px;
+            color: #ffffff;
         }
 
         .nav-links a {
-            color: #888888;
+            color: #555555;
             text-decoration: none;
             margin-left: 40px;
-            font-size: 14px;
-            letter-spacing: 1px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #ffffff;
+            color: #00ffcc; /* Акцентный неоновый цвет при наведении */
         }
 
         /* Главный блок (Hero Section) */
@@ -61,32 +64,32 @@
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 850px;
         }
 
         .subtitle {
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #888888;
+            letter-spacing: 6px;
+            color: #00ffcc; /* Тонкий неоновый подтекст */
             display: block;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 56px;
-            font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: -1px;
             margin-bottom: 25px;
         }
 
-        p {
+        h1 {
+            font-size: 64px;
+            font-weight: 300;
+            line-height: 1.15;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
             font-size: 18px;
             line-height: 1.6;
-            color: #aaaaaa;
-            margin-bottom: 40px;
-            max-width: 600px;
+            color: #777777;
+            margin-bottom: 45px;
+            max-width: 650px;
         }
 
         /* Кнопки */
@@ -96,11 +99,13 @@
         }
 
         .btn {
-            padding: 16px 35px;
-            font-size: 14px;
-            border-radius: 50px; /* Округлые стильные кнопки */
+            padding: 18px 38px;
+            font-size: 13px;
+            border-radius: 4px; /* Более строгие, квадратные хакерские формы */
             text-decoration: none;
-            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
 
@@ -110,18 +115,71 @@
         }
 
         .btn-primary:hover {
-            background-color: #cccccc;
+            background-color: #00ffcc;
             transform: translateY(-2px);
         }
 
         .btn-secondary {
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: #ffffff;
+            background: rgba(0, 255, 255, 0.02);
+            border-color: #00ffcc;
+        }
+
+        /* Блок Услуг (Services Section) */
+        .services-section {
+            padding: 140px 10%;
+            background-color: #070707;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: -1px;
+            margin-bottom: 60px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background: #0d0d0d;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 40px;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 204, 0.3); /* Аккуратная неоновая подсветка карты */
+            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.02);
+        }
+
+        .card-icon {
+            font-size: 28px;
+            margin-bottom: 25px;
+            display: block;
+            color: #00ffcc;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #555555;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -129,26 +187,55 @@
 
     <!-- Навигация -->
     <header class="navbar">
-        <div class="logo">AURA</div>
+        <div class="logo">VERTEX</div>
         <nav class="nav-links">
-            <a href="#about">О нас</a>
-            <a href="#services">Услуги</a>
-            <a href="#contacts">Контакты</a>
+            <a href="#about">Системы</a>
+            <a href="#services">Протоколы</a>
+            <a href="#contacts">Терминал</a>
         </nav>
     </header>
 
     <!-- Главный экран -->
     <main class="hero">
         <div class="hero-content">
-            <span class="subtitle">Premium Business Solutions</span>
-            <h1>Создаем цифровое будущее, опережая время.</h1>
-            <p>Мы помогаем крупным компаниям внедрять экосистемные IT-продукты, автоматизировать процессы и масштабировать влияние на глобальном рынке.</p>
+            <span class="subtitle">Neural Systems & Cyber Security</span>
+            <h1>Интеллект высшего порядка.</h1>
+            <p>VERTEX создает закрытые нейросетевые экосистемы для транснациональных корпораций. Мы автоматизируем принятие бизнес-решений и защищаем данные на квантовом уровне.</p>
             <div class="cta-group">
-                <a href="#contacts" class="btn btn-primary">Обсудить проект</a>
-                <a href="#services" class="btn btn-secondary">Наши кейсы →</a>
+                <a href="#services" class="btn btn-primary">Инициализировать</a>
+                <a href="#contacts" class="btn btn-secondary">Связь →</a>
             </div>
         </div>
     </main>
+
+    <!-- Блок Услуг -->
+    <section id="services" class="services-section">
+        <h2 class="section-title">Технологические протоколы</h2>
+        <div class="grid">
+            
+            <!-- Карточка 1 -->
+            <div class="card">
+                <span class="card-icon">🧠</span>
+                <h3>Синтез ИИ-ассистентов</h3>
+                <p>Развертывание персональных цифровых аватаров на базе генеративных моделей класса Core-9. Полная имитация вашего стиля управления 24/7.</p>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="card">
+                <span class="card-icon">👁️</span>
+                <h3>Нейроинтерфейсы</h3>
+                <p>Внедрение бесконтактных систем управления корпоративным софтом. Считывание паттернов внимания и мгновенный отклик систем безопасности.</p>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="card">
+                <span class="card-icon">🛡️</span>
+                <h3>Квантовое шифрование</h3>
+                <p>Защита каналов связи от любых видов кибератак будущего. Алгоритмы шифрования с динамическим изменением ключа на базе квантовых состояний.</p>
+            </div>
+
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
